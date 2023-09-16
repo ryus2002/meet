@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Providers\DailySentenceService;
+use App\Providers\Interfaces\DailySentenceServiceInterface;
 
 class SentenceController extends Controller
 {
+    private $dailysentenceService;
+
+    public function __construct(DailySentenceServiceInterface $dailysentenceService) {
+        $this->dailysentenceService = $dailysentenceService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,8 +20,8 @@ class SentenceController extends Controller
      */
     public function index()
     {
-        $dailysentenceService = new DailySentenceService();
-        $sentence = $dailysentenceService->getSentence();
+        // $dailysentenceService = new DailySentenceService();
+        $sentence = $this->dailysentenceService->getSentence();
         echo $sentence;
     }
 }

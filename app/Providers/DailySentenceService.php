@@ -4,8 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
+use App\Providers\Interfaces\DailySentenceServiceInterface;
 
-class DailySentenceService extends ServiceProvider
+class DailySentenceService implements DailySentenceServiceInterface
 {
     private $url;
 

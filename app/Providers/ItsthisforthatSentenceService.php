@@ -2,11 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\ServiceProvider;
 use App\Providers\Interfaces\SentenceServiceInterface;
+use Illuminate\Support\Facades\Http;
 
-class DailySentenceService implements SentenceServiceInterface
+class ItsthisforthatSentenceService implements SentenceServiceInterface
 {
     private $url;
 
@@ -20,11 +19,23 @@ class DailySentenceService implements SentenceServiceInterface
      */
     public function getSentence()
     {
-        $this->url = "http://metaphorpsum.com/sentences/3";
+        $this->url = "https://itsthisforthat.com/api.php?text";
 
         try {
             // 使用 cURL 包发送 GET 请求
-            $response = Http::get($this->url);
+            // 抓https網址需要證書，在正式機需修正，不使用CURLOPT_SSL_VERIFYPEER
+            $isDebug = config('app.debug');
+            $CURLOPT_SSL_VERIFYPEER = '';
+            if ($isDebug) {
+                $CURLOPT_SSL_VERIFYPEER = false;
+            }
+            else {
+                $CURLOPT_SSL_VERIFYPEER = true;
+            }
+
+            $response = Http::withOptions([
+                'curl' => [CURLOPT_SSL_VERIFYPEER => $CURLOPT_SSL_VERIFYPEER],
+            ])->get($this->url);
 
             if ($response->successful()) {
                 // 请求成功，返回响应的内容

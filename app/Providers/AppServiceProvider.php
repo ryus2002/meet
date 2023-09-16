@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Interfaces\DailySentenceServiceInterface;
+use App\Providers\Interfaces\SentenceServiceInterface;
 use App\Providers\DailySentenceService;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(DailySentenceServiceInterface::class, DailySentenceService::class);
+        $this->app->bind(SentenceServiceInterface::class, DailySentenceService::class);
     }
 
     /**

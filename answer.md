@@ -1,3 +1,13 @@
+### 問題1：
+
+1. 增加驗證參數source，值分別為Metaphorpsum、Itsthisforthat，表示要使用哪一家產生器
+2. 使用api寫法，api網址:
+http://127.0.0.1:8000/api/getSentence?source=Metaphorpsum
+http://127.0.0.1:8000/api/getSentence?source=Itsthisforthat
+
+
+### 問題2：
+
 ### 手機項目表(phone_items)
 
 | 欄位名          | 資料型態        | 說明                                     |

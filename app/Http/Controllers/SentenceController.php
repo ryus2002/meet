@@ -42,7 +42,6 @@ class SentenceController extends Controller
 
         $source = $request->query('source');
 
-        $source = 'Itsthisforthat';
         // 根据用户的选择创建相应的策略实例
         if ($source === 'Metaphorpsum') {
             $this->strategy = new DailySentenceService();
